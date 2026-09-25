@@ -29,7 +29,7 @@ func producer(stream Stream, tweets chan *Tweet, wg *sync.WaitGroup) () {
 }
 
 func consumer(tweets chan *Tweet, wg *sync.WaitGroup) {
-	
+	defer wg.Done()
 	for t := range tweets {
 		if t.IsTalkingAboutGo() {
 			fmt.Println(t.Username, "\ttweets about golang")
